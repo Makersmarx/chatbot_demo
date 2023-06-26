@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MI Chatbot</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="chatbot-container">
+      <div class="header">
+        <h1>MI Chatbot</h1>
+        <img
+          class="logo"
+          src="{{url_for('static', filename='images/logo.jpg')}}"
+          align="middle"
+        />
+      </div>
+      <div class="message-container">
+        <div class="messages">
+          <!-- This is where the message will be displayed -->
+          {{value}}
+        </div>
+      </div>
+      <div class="input-form">
+        <input
+          type="text"
+          id="message"
+          placeholder="Type your message here..."
+        />
+        <button class="submit" type="submit">Push</button>
+      </div>
+    </div>
+
+    <script src="/static/js/events.js"></script>
+  </body>
+</html>

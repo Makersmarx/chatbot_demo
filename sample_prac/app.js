@@ -1,7 +1,6 @@
 // import Bard, { askAI } from 'bard-ai';
 
-// const COOKIE_KEY =
-//   'Need Personal Cookie labeled __Secure-1PSID';
+// const COOKIE_KEY = 'Need Personal Cookie labeled __Secure-1PSID';
 
 // await Bard.init(COOKIE_KEY);
 
