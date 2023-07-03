@@ -1,10 +1,12 @@
 // Just test for submit button
 
-const submit = document.querySelector('.submit');
+const form = document.querySelector('.input-form');
 const message = document.querySelector('.messages');
 
-const sayHello = () => {
-  message.textContent = 'Team Chicago will Own this $%@%^';
-};
+// if (message.textContent.length < 20) {
+//   message.textContent =
+//     'Hello and welcome to our Matt bot. Feel free to ask me about the ways Movable ink can help your company';
+// }
 
-submit.addEventListener('click', sayHello);
+form.reset();
+console.log(message.textContent);
