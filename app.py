@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 import os
+import re
 
 # API KEY Details
 load_dotenv()
@@ -65,9 +66,9 @@ def index():
         logo_image = get_logo(inputUser, image_sources)
 
         return render_template(
-            "index.html",
+            "demoBlocks.html",
             img_url=logo_image,
-            value=response_chat,
+            value=re.sub(r"\s+", " ", response_chat),
         )
     elif request.method == "GET":
         chatty = "Hello and welcome to our SC bot. Feel free to ask me about the ways Movable ink can help your company"

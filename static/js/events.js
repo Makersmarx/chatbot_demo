@@ -8,5 +8,7 @@ const message = document.querySelector('.messages');
 //     'Hello and welcome to our Matt bot. Feel free to ask me about the ways Movable ink can help your company';
 // }
 
-form.reset();
-console.log(message.textContent);
+let text = message.textContent;
+text = 'Hello World';
+console.log(text);
+// text = text.replace(/^a-zA-Z0-9 ]/g, '');
