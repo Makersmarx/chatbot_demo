@@ -10,12 +10,14 @@
     />
   </head>
   <body>
-    <img
-      class="miLogo"
-      src="{{ url_for('static', filename= 'images/logo.jpg') }}"
-      align="center"
-      alt="Company Logo"
-    />
+    <header>
+      <img
+        class="miLogo"
+        src="{{ url_for('static', filename= 'images/logo.jpg') }}"
+        align="center"
+        alt="Company Logo"
+      />
+    </header>
     <div class="grid">
       <div class="messages">
         <img
@@ -23,7 +25,8 @@
           src="{{ img_url }}"
           align="center"
           alt="Company Logo"
-        />{{ value }}
+        />
+        <p class="gridOne"></p>
       </div>
       <div class="messages">
         <img

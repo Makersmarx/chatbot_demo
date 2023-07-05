@@ -1,11 +1,18 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  width: 100vw;
+  height: 100vh;
 }
 
 .grid div {
-  background-color: #ccc;
+  background-color: #fff;
   padding: 10px;
 }
 
@@ -26,4 +33,29 @@
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+header {
+  background: -webkit-gradient(
+    radial,
+    -66.44% -152.13%,
+    121.76,
+    57.56% 66.87%,
+    3404.35,
+    color-stop(0.0358, rgb(239, 222, 251)),
+    color-stop(0.2785, rgb(174, 228, 255)),
+    color-stop(0.3616, rgb(250, 239, 254)),
+    color-stop(0.3842, rgb(249, 231, 254)),
+    color-stop(0.4186, rgb(248, 210, 253)),
+    color-stop(0.4604, rgb(245, 176, 252)),
+    color-stop(0.4677, rgb(244, 169, 252)),
+    color-stop(0.4958, rgb(227, 146, 252)),
+    color-stop(0.555, rgb(178, 97, 239)),
+    color-stop(0.6307, rgb(118, 0, 255)),
+    color-stop(0.6547, rgb(124, 0, 255)),
+    color-stop(0.6881, rgb(142, 0, 255)),
+    color-stop(0.7269, rgb(172, 0, 255)),
+    color-stop(0.7621, rgb(205, 0, 255))
+  );
 }
