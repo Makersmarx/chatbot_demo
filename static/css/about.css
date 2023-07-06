@@ -59,3 +59,66 @@ header {
     color-stop(0.7621, rgb(205, 0, 255))
   );
 }
+
+/* .messagesOne {
+  position: relative;
+  top: 0;
+  left: 0;
+} */
+
+.cart {
+  /* border: 0;
+  display: block; */
+  line-height: 1;
+  width: auto;
+  max-width: 600px;
+  position: relative;
+  object-fit: cover;
+  padding-left: 10%;
+}
+
+.cartLogo {
+  width: 100px;
+  height: 100px;
+  border-radius: 20%;
+  display: block;
+  position: absolute;
+  top: 260px;
+  right: 360px;
+  z-index: 3;
+}
+
+.mapImage {
+  line-height: 1;
+  height: 400px;
+  width: auto;
+  max-width: 600px;
+  position: relative;
+  object-fit: cover;
+  padding-left: 10%;
+}
+
+.mapLogo {
+  width: 100px;
+  height: 100px;
+  border-radius: 20%;
+  display: block;
+  position: absolute;
+  top: 160px;
+  left: 350px;
+  z-index: 3;
+}
+
+.gridOne {
+  width: auto;
+  height: 100px;
+  border-radius: 20%;
+  display: block;
+  position: absolute;
+  top: 260px;
+  left: 330px;
+  z-index: 3;
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+}

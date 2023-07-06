@@ -40,7 +40,7 @@ app = Flask(__name__)
 def index():
     if request.method == "POST":
         inputUser = request.form.get("textEntry")
-        prompt = f"How can Movable Ink Help {inputUser}"
+        prompt = f"How can Movable Ink Help {inputUser} as a list"
         response = palm.generate_text(**defaults, prompt=prompt)
         response_chat = response.result
 
