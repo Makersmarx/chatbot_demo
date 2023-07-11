@@ -18,51 +18,59 @@
         alt="Company Logo"
       />
     </header>
-    <div class="grid">
-      <div class="messagesOne">
-        <img
-          class="mapLogo"
-          src="{{ img_url }}"
-          align="center"
-          alt="Company Logo"
-        />
-        <img
-          class="mapImage"
-          src="{{ url_for('static', filename= 'images/Redistricting.jpg') }}"
-          align="center"
-          alt="Company Logo"
-        />
-        <p class="gridOne"></p>
+    <div class="chatbot-container">
+      <div class="carousel">
+        <ul class="slides">
+          <input type="radio" name="radio-buttons" id="img-1" checked />
+          <li class="slide-container">
+            <div class="slide-image">
+              <div class="logo-container">
+                <img
+                id="company-logo"
+                src="{{ img_url }}"
+                alt="Company Logo"
+                />
+                <img id="map-slide" src="/static/images/Redistricting.jpg" />
+              </div>
+            </div>
+            <div class="carousel-controls">
+              <label for="img-2" class="prev-slide">
+                <span>&lsaquo;</span>
+              </label>
+              <label for="img-2" class="next-slide">
+                <span>&rsaquo;</span>
+              </label>
+            </div>
+          </li>
+          <input type="radio" name="radio-buttons" id="img-2" />
+          <li class="slide-container">
+            <div class="slide-image">
+              <div class="logo-container">
+              <img
+              id="company-logo"
+              src="{{ img_url }}"
+              alt="Company Logo"
+              />
+              <img id="slide" src="/static/images/cart.png" />
+              </div>
+            </div>
+            <div class="carousel-controls">
+              <label for="img-1" class="prev-slide">
+                <span>&lsaquo;</span>
+              </label>
+              <label for="img-1" class="next-slide">
+                <span>&rsaquo;</span>
+              </label>
+            </div>
+          </li>
+          <div class="carousel-dots">
+            <label for="img-1" class="carousel-dot" id="img-dot-1"></label>
+            <label for="img-2" class="carousel-dot" id="img-dot-2"></label>
+          </div>
+        </ul>
       </div>
-      <div class="messages">
-        <img
-          class="cartLogo"
-          src="{{ img_url }}"
-          align="center"
-          alt="Company Logo"
-        />
-        <img
-          class="cart"
-          src="{{ url_for('static', filename= 'images/cart.png') }}"
-          align="center"
-          alt="Company Logo"
-        />
-      </div>
-      <div class="messages">
-        <img
-          class="logo"
-          src="{{ img_url }}"
-          align="center"
-          alt="Company Logo"
-        />{{ value }}
-      </div>
-      <div class="messages">
-        <img
-          class="logo"
-          src="{{ img_url }}"
-          align="center"
-          alt="Company Logo"
-        />{{ value }}
+      <div class="message-container">
+        <div class="message-text"> {{ value }} </div>
       </div>
     </div>
     <script src="/static/js/events.js"></script>

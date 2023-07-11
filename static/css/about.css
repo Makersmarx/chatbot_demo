@@ -1,28 +1,6 @@
 body {
-  margin: 0;
-  overflow: hidden;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  width: 100vw;
   height: 100vh;
-}
-
-.grid div {
-  background-color: #fff;
-  padding: 10px;
-}
-
-.logo {
-  width: 100px;
-  height: 100px;
-  border-radius: 20%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center;
 }
 
 .miLogo {
@@ -59,66 +37,193 @@ header {
     color-stop(0.7621, rgb(205, 0, 255))
   );
 }
+.chatbot-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  height: 80vh;
+  margin-left: 22%;
+  margin-right: 22%;
+  margin-top: 20px;
+}
+.carousel {
+  margin-left: 8%;
+  margin-right: 8%;
+}
 
-/* .messagesOne {
+ul.slides {
+  display: block;
   position: relative;
+  height: 400px;
+  margin-top: 10px;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+}
+
+.slides * {
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+ul.slides input {
+  display: none; 
+}
+
+
+.slide-container { 
+  display: block; 
+  height: 85%;
+}
+
+.slide-image {
+  display: block;
+  position: absolute;
+  margin-left: 10%;
+  margin-right: 10%;
+  top: 0;
+  opacity: 0;
+  transition: all .7s ease-in-out;
+}   
+
+.slide-image img {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  align-self: center;
+  justify-self: center;
+  margin: auto;
+}
+.logo-container {
+  position: relative;
+
+}
+#company-logo {
   top: 0;
   left: 0;
-} */
+  position: absolute;
+  max-width: 8rem;
+  max-height: 10rem;
+  padding: 5%;
+  z-index: 8;
+}
+#map-slide {
+  width: 90%;
+  height: 100%;
+  align-self: center;
+}
 
-.cart {
-  /* border: 0;
-  display: block; */
-  line-height: 1;
-  width: auto;
-  max-width: 600px;
+.carousel-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  font-size: 100px;
+  line-height: 600px;
+  color: #fff;
+}
+
+.carousel-controls label {
+  display: none;
+  position: absolute;
+  padding: 0 20px;
+  opacity: 0;
+  transition: opacity .2s;
+  cursor: pointer;
+}
+
+.slide-image:hover + .carousel-controls label{
+  opacity: 0.5;
+}
+
+.carousel-controls label:hover {
+  opacity: 1;
+}
+
+.carousel-controls .prev-slide {
+  width: 49%;
+  text-align: left;
+  left: 0;
+}
+
+.carousel-controls .next-slide {
+  width: 49%;
+  text-align: right;
+  right: 0;
+}
+
+.carousel-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  z-index: 999;
+  text-align: center;
+}
+
+.carousel-dots .carousel-dot {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.5;
+  margin: 10px;
+}
+
+input:checked + .slide-container .slide-image {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 1s ease-in-out;
+}
+
+input:checked + .slide-container .carousel-controls label {
+   display: block; 
+}
+
+input#img-1:checked ~ .carousel-dots label#img-dot-1,
+input#img-2:checked ~ .carousel-dots label#img-dot-2,
+
+
+input:checked + .slide-container .nav label { display: block; }
+
+.message-container {
   position: relative;
-  object-fit: cover;
-  padding-left: 10%;
+  background: #de38b4;
+  color: #FFFFFF;
+  filter: drop-shadow(-3px 6px 3px rgba(163, 163, 163, 0.98));
+  text-align: center;
+  width: 75%;
+  height: 200px;
+  border-radius: 10px;
+  margin-left: 13%;
+  margin-top: 10px;
+  margin-right: 5%;
+  padding: 2px;
 }
 
-.cartLogo {
-  width: 100px;
-  height: 100px;
-  border-radius: 20%;
-  display: block;
+.message-container:after {
+  content: '';
   position: absolute;
-  top: 260px;
-  right: 360px;
-  z-index: 3;
-}
-
-.mapImage {
-  line-height: 1;
-  height: 400px;
-  width: auto;
-  max-width: 600px;
-  position: relative;
-  object-fit: cover;
-  padding-left: 10%;
-}
-
-.mapLogo {
-  width: 100px;
-  height: 100px;
-  border-radius: 20%;
   display: block;
-  position: absolute;
-  top: 160px;
-  left: 350px;
-  z-index: 3;
+  width: 0;
+  z-index: 1;
+  border-style: solid;
+  border-color: transparent #de38b4;
+  border-width: 17px 0 17px 24px;
+  top: 73%;
+  right: -24px;
 }
-
-.gridOne {
-  width: auto;
-  height: 100px;
-  border-radius: 20%;
-  display: block;
-  position: absolute;
-  top: 260px;
-  left: 330px;
-  z-index: 3;
-  font-size: 20px;
-  color: black;
-  font-weight: bold;
+.message-text {
+  font-family: sans-serif;
+  font-size: 12px;
+  padding: 8px;
+  text-align: left;
 }
