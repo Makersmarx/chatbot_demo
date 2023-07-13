@@ -34,7 +34,7 @@
               </div>
             </div>
             <div class="carousel-controls">
-              <label for="img-2" class="prev-slide">
+              <label for="img-3" class="prev-slide">
                 <span>&lsaquo;</span>
               </label>
               <label for="img-2" class="next-slide">
@@ -56,6 +56,24 @@
             </div>
             <div class="carousel-controls">
               <label for="img-1" class="prev-slide">
+                <span>&lsaquo;</span>
+              </label>
+              <label for="img-3" class="next-slide">
+                <span>&rsaquo;</span>
+              </label>
+            </div>
+          </li>
+          <input type="radio" name="radio-buttons" id="img-3" />
+          <li class="slide-container">
+            <div class="slide-image">
+                <div class="grid-parent">
+                   {% for name, image in dic.items() %}       
+                    <div class="p{{loop.index + 1}}"><img id="productImage" src="{{image}}" /> <br><b>{{name}}</b></div>
+                   {% endfor %}
+                  </div>
+            </div>
+            <div class="carousel-controls">
+              <label for="img-2" class="prev-slide">
                 <span>&lsaquo;</span>
               </label>
               <label for="img-1" class="next-slide">

@@ -43,12 +43,38 @@ def index():
         prompt = f"How can Movable Ink Help {inputUser} as a list"
         response = palm.generate_text(**defaults, prompt=prompt)
         response_chat = response.result
+        company_prompt = f"What category of company is ${inputUser}?"
+        company_response = palm.generate_text(**defaults, prompt=company_prompt)
+        company_type = company_response.result
+        print('COMPANY TYPE', company_type)
 
         URL = f"https://worldvectorlogo.com/logo/{inputUser}"
 
         getURL = requests.get(URL, headers={"User-Agent": "Mozilla/5.0"})
         soup = BeautifulSoup(getURL.text, "html.parser")
 
+        getProduct = requests.get("https://www.abercrombie.com/shop/us/womens", headers={"User-Agent": "Mozilla/5.0"})
+        company_soup = BeautifulSoup(getProduct.text, 'html.parser')
+        image_dictionary = {}
+        alt_texts = []
+        images_ = company_soup.find_all('img')
+      
+        
+
+        for i in range(len(images_) - 1):
+            if images_[i] is not None and hasattr(images_[i], 'get'):
+                text = images_[i].get('alt')
+                if bool(text):
+                    alt_texts.append(images_[i].get('alt'))
+                    image_dictionary[text] = images_[i].get('src')
+            # return alt_texts
+        alt_strings = "|".join(alt_texts)
+        alt_prompt = f'Given the | separated list ${alt_strings}, can you identify 4 different products and return them as a | separated list'
+        alt_response = palm.generate_text(**defaults, prompt=alt_prompt)
+        product_array = alt_response.result.split('|')
+        print('PRODUCT', product_array)
+        product_dictionary = {p.strip():image_dictionary[p.strip()] for p in product_array}
+        print('FINALY???', product_dictionary)
         image_ = soup.find_all("img")
 
         image_sources = []
@@ -69,6 +95,7 @@ def index():
             "demoBlocks.html",
             img_url=logo_image,
             value=re.sub(r"\s+", " ", response_chat),
+            dic=product_dictionary,
         )
     elif request.method == "GET":
         chatty = "Hello and welcome to our SC bot. Feel free to ask me about the ways Movable ink can help your company"
