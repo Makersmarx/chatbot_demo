@@ -2,8 +2,7 @@
 
 const form = document.querySelector('.input-form');
 const message = document.querySelector('.messages');
-
-const text = message.textContent;
+const text = document.querySelector('.message-text');
 
 // test and grab users location, ping free api to convert lat/lon
 const gridOne = document.querySelector('.gridOne');
@@ -27,3 +26,5 @@ const showPosition = async (position) => {
 };
 
 getLocation();
+
+text.innerHTML = text.textContent.replace(/\*/g, '').trim();
