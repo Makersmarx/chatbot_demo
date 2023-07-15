@@ -39,26 +39,28 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        inputUser = request.form.get("textEntry")
-        user_input_array = inputUser.split(",")
-        prompt = f"How can Movable Ink help {user_input_array[0]} with their email marketing spoken as a friendly solutions consultant name Inky"
+        inputUserOne = request.form.get("textEntry")
+        inputUserTwo = request.form.get("textEntryTwo")
+        prompt = f"How can Movable Ink help {inputUserOne} with their email marketing spoken as a friendly solutions consultant name Inky"
 
         response = palm.generate_text(**defaults, prompt=prompt)
         response_chat = response.result
 
-        company_prompt = f"What category of company is ${inputUser}?"
+        company_prompt = f"What category of company is ${inputUserOne}?"
         company_response = palm.generate_text(**defaults, prompt=company_prompt)
         company_type = company_response.result
 
         print("COMPANY TYPE", company_type)
 
-        URL = f"https://worldvectorlogo.com/logo/{user_input_array[0]}"
+        URL = f"https://worldvectorlogo.com/logo/{inputUserOne}"
         getURL = requests.get(URL, headers={"User-Agent": "Mozilla/5.0"})
         soup = BeautifulSoup(getURL.text, "html.parser")
+
         getProduct = requests.get(
-            user_input_array[1],
+            inputUserTwo,
             headers={"User-Agent": "Mozilla/5.0"},
         )
+
         company_soup = BeautifulSoup(getProduct.text, "html.parser")
         image_dictionary = {}
         alt_texts = []
@@ -98,7 +100,7 @@ def index():
             return None
 
         # Image URL to pass into HTML
-        logo_image = get_logo(user_input_array[0], image_sources)
+        logo_image = get_logo(inputUserOne, image_sources)
 
         return render_template(
             "demoBlocks.html",

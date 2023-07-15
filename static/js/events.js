@@ -1,7 +1,4 @@
 // Just test for submit button
-
-const form = document.querySelector('.input-form');
-const message = document.querySelector('.messages');
 const text = document.querySelector('.message-text');
 
 // test and grab users location, ping free api to convert lat/lon
