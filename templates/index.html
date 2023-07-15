@@ -1,45 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Movable Ink</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename= 'css/style.css') }}"
-    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inky</title>
+    <link rel="icon" href="./static/images/logo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <div class="chatbot-container">
-      <div class="header">
-        <h1>Movable Ink Solutions Bot</h1>
-        <img
-          class="logo"
-          src="{{ img_url }}"
-          align="center"
-          alt="Company Logo"
-        />
-      </div>
-      <!-- <img
-        class="mp"
-        src="{{ url_for('static', filename= 'images/mpimage.jpeg') }}"
-        align="left"
-        alt="Company Logo"
-      /> -->
-      <div class="message-container">
-        <div class="messages">
-          <!-- This is where the message will be displayed -->
-          {{value}}
+    <div
+      class="min-h-screen bg-gray-300 py-6 flex flex-col justify-center sm:py-12"
+    >
+      <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-pink-600 to-pink-50 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"
+        ></div>
+        <div
+          class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-10"
+        >
+          <div class="max-w-md mx-auto">
+            <div>
+              <h1 class="text-2xl font-semibold">Movable Ink</h1>
+              <p class="text-sm italic font-semibold">
+                Please enter your info below
+              </p>
+              <img
+                class="mt-6 rounded-full h-48 max-w-xs mx-auto"
+                src="./static/images/logo.jpg"
+                alt=""
+              />
+            </div>
+            <div class="divide-y divide-gray-200">
+              <div
+                class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7"
+              >
+                <div class="relative">
+                  <form autocomplete="off" method="POST" action="">
+                  <input
+                    type="text"
+                    name="textEntry"
+                    id="message"
+                    placeholder="Please Enter Your Company Name"
+                    class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                    placeholder="Email address"
+                  />
+                  <label
+                    for="textEntry"
+                    class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                    >Company Name</label
+                  >
+                </div>
+                <div class="relative">
+                  <input
+                    type="text"
+                    name="textEntryTwo"
+                    id="message"
+                    placeholder="Please Enter Your Company Name"
+                    class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                    placeholder="Company URL"
+                  />
+                  <label
+                    for="textEntryTwo"
+                    class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                    >Company URL</label
+                  >
+                </div>
+                <div class="relative">
+                  <button type="submit" value="Submit" id='butt' class="bg-pink-600 text-white rounded-md px-2 py-1">
+                    Submit
+                  </button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="input-form">
-        <form autocomplete="off" method="POST" action="">
-          <input
-            type="text"
-            name="textEntry"
-            id="message"
-            placeholder="Please Enter Your Company Name"
-          />
-          <button class="submit" type="submit" value="Submit">Push</button>
-        </form>
       </div>
     </div>
     <script src="/static/js/events.js"></script>

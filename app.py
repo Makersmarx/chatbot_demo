@@ -40,23 +40,29 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        inputUser = request.form.get("textEntry")
-        prompt = f"How can Movable Ink Help {inputUser} as a list"
+        inputUserOne = request.form.get("textEntry")
+        inputUserTwo = request.form.get("textEntryTwo")
+        prompt = f"How can Movable Ink help {inputUserOne} with their email marketing spoken as a friendly solutions consultant name Inky"
+
         response = palm.generate_text(**defaults, prompt=prompt)
         response_chat = response.result
-        company_prompt = f"What category of company is ${inputUser}?"
+
+        company_prompt = f"What category of company is ${inputUserOne}?"
         company_response = palm.generate_text(**defaults, prompt=company_prompt)
         company_type = company_response.result
-        print('COMPANY TYPE', company_type)
 
-        URL = f"https://worldvectorlogo.com/logo/{inputUser}"
+        print("COMPANY TYPE", company_type)
 
+        URL = f"https://worldvectorlogo.com/logo/{inputUserOne}"
         getURL = requests.get(URL, headers={"User-Agent": "Mozilla/5.0"})
         soup = BeautifulSoup(getURL.text, "html.parser")
 
-        getProduct = requests.get("https://www.abercrombie.com/shop/us/womens", headers={"User-Agent": "Mozilla/5.0"})
-        
-        company_soup = BeautifulSoup(getProduct.text, 'html.parser')
+        getProduct = requests.get(
+            inputUserTwo,
+            headers={"User-Agent": "Mozilla/5.0"},
+        )
+
+        company_soup = BeautifulSoup(getProduct.text, "html.parser")
         image_dictionary = {}
         final_dictionary = {}
         alt_texts = []
@@ -83,8 +89,7 @@ def index():
             travel_soup = BeautifulSoup(getDestinations.text, 'html.parser')
             image_tags = travel_soup.find_all('pre', text=True)
             hotel_images = []
-            # for img in image_tags:
-            #     hotel_images.append(img['src'])
+
             for tag in image_tags:
                 if("hotelsList" in tag.getText()):
                     hotelsList = tag.getText()
@@ -121,7 +126,7 @@ def index():
         for image in image_:
             image_sources.append(image.get("src"))
         
-        logo_image = get_logo(inputUser, image_sources)
+        logo_image = get_logo(inputUserOne, image_sources)
 
 
         return render_template(
@@ -132,7 +137,7 @@ def index():
         )
 
     elif request.method == "GET":
-        chatty = "Hello and welcome to our SC bot. Feel free to ask me about the ways Movable ink can help your company"
+        chatty = "Hello and welcome to our SC bot. Please enter your company name and website"
 
         # Image URL to pass into HTML
         logo_image = "static/images/logo.jpg"
