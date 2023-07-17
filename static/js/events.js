@@ -1,5 +1,6 @@
 // Just test for submit button
 const text = document.getElementById('message-text');
+const mapInfo = document.getElementById('mapInfo');
 
 // test and grab users location, ping free api to convert lat/lon
 const gridOne = document.querySelector('.gridOne');
@@ -18,7 +19,7 @@ const showPosition = async (position) => {
     `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en`
   );
   const places = await response.json();
-  gridOne.innerHTML =
+  mapInfo.innerHTML =
     'City: ' + places.locality + '<br>Zipcode: ' + places.postcode;
 };
 
