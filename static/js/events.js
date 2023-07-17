@@ -1,5 +1,5 @@
 // Just test for submit button
-const text = document.querySelector('.message-text');
+const text = document.getElementById('message-text');
 
 // test and grab users location, ping free api to convert lat/lon
 const gridOne = document.querySelector('.gridOne');
@@ -24,4 +24,4 @@ const showPosition = async (position) => {
 
 getLocation();
 
-text.innerHTML = text.textContent.replace(/\*/g, '').trim();
+text.innerHTML.replace(/\*/g, '').trim();

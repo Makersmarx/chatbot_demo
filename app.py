@@ -66,48 +66,56 @@ def index():
         image_dictionary = {}
         final_dictionary = {}
         alt_texts = []
-        images_ = company_soup.find_all('img')
-      
-        if(company_type == 'retail' or "clothing" in company_type):
+        images_ = company_soup.find_all("img")
 
+        if (
+            company_type == "retailer"
+            or "clothing"
+            or "Clothing & Accessories" in company_type
+        ):
             for i in range(len(images_) - 1):
-                if images_[i] is not None and hasattr(images_[i], 'get'):
-                    text = images_[i].get('alt')
+                if images_[i] is not None and hasattr(images_[i], "get"):
+                    text = images_[i].get("alt")
                     if bool(text):
-                        alt_texts.append(images_[i].get('alt'))
-                        image_dictionary[text] = images_[i].get('src')
+                        alt_texts.append(images_[i].get("alt"))
+                        image_dictionary[text] = images_[i].get("src")
 
             alt_strings = "|".join(alt_texts)
-            alt_prompt = f'Given the | separated list ${alt_strings}, can you identify 4 different products and return them as a | separated list'
+            alt_prompt = f"Given the | separated list ${alt_strings}, can you identify 4 different products and return them as a | separated list"
             alt_response = palm.generate_text(**defaults, prompt=alt_prompt)
-            product_array = alt_response.result.split('|')
+            product_array = alt_response.result.split("|")
             for product in product_array:
                 final_dictionary[product.strip()] = image_dictionary[product.strip()]
-    
-        elif(bool(company_type)):
-            getDestinations = requests.get('https://www.marriott.com/en/destinations/dublin.mi', headers={"User-Agent": "Mozilla/5.0"})
-            travel_soup = BeautifulSoup(getDestinations.text, 'html.parser')
-            image_tags = travel_soup.find_all('pre', text=True)
+
+        elif bool(company_type):
+            getDestinations = requests.get(
+                "https://www.marriott.com/en/destinations/dublin.mi",
+                headers={"User-Agent": "Mozilla/5.0"},
+            )
+            travel_soup = BeautifulSoup(getDestinations.text, "html.parser")
+            image_tags = travel_soup.find_all("pre", text=True)
             hotel_images = []
 
             for tag in image_tags:
-                if("hotelsList" in tag.getText()):
+                if "hotelsList" in tag.getText():
                     hotelsList = tag.getText()
                     hotelObj = json.loads(hotelsList)
-                    for item in hotelObj['hotelsList']:
+                    for item in hotelObj["hotelsList"]:
                         if "image" in item:
-                            hotel_images.append(item['image'])
+                            hotel_images.append(item["image"])
 
             hotel_image_strings = "|".join(hotel_images)
-            hotel_tags = travel_soup.find_all('a', href=True)
+            hotel_tags = travel_soup.find_all("a", href=True)
             hotel_list = []
             for a in hotel_tags:
-                hotel_list.append(a['href'])      
+                hotel_list.append(a["href"])
             hotel_strings = "|".join(hotel_list)
-            hotel_prompt = f'Given the | separated list of hyperlinks ${hotel_strings}, can you identify 4 different hotels and return the name as a | separated list'
+            hotel_prompt = f"Given the | separated list of hyperlinks ${hotel_strings}, can you identify 4 different hotels and return the name as a | separated list"
             hotel_response = palm.generate_text(**defaults, prompt=hotel_prompt)
-            hotel_matching_prompt = f'given the | separated list of image src links: ${hotel_image_strings}, return a object an where the key  hotel in this | separted list ${hotel_response.result} and formatted with proper spacing and capitalization. The value is the src link. The key and values should be enclosed in double quotes not single quotes'
-            matches_response = palm.generate_text(**defaults, prompt=hotel_matching_prompt)
+            hotel_matching_prompt = f"given the | separated list of image src links: ${hotel_image_strings}, return a object an where the key  hotel in this | separted list ${hotel_response.result} and formatted with proper spacing and capitalization. The value is the src link. The key and values should be enclosed in double quotes not single quotes"
+            matches_response = palm.generate_text(
+                **defaults, prompt=hotel_matching_prompt
+            )
             hotel_dictionary = json.loads(matches_response.result)
             for hotel in hotel_dictionary.keys():
                 final_dictionary[hotel] = hotel_dictionary[hotel]
@@ -125,9 +133,8 @@ def index():
 
         for image in image_:
             image_sources.append(image.get("src"))
-        
-        logo_image = get_logo(inputUserOne, image_sources)
 
+        logo_image = get_logo(inputUserOne, image_sources)
 
         return render_template(
             "demoBlocks.html",

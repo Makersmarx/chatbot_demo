@@ -4,93 +4,155 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movable Ink</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename= 'css/about.css') }}"
-    />
+    <link rel="icon" href="./static/images/logo.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <header>
-      <img
-        class="miLogo"
-        src="{{ url_for('static', filename= 'images/logo.jpg') }}"
-        align="center"
-        alt="Company Logo"
-      />
-    </header>
-    <div class="chatbot-container">
-      <div class="carousel">
-        <ul class="slides">
-          <input type="radio" name="radio-buttons" id="img-1" checked />
-          <li class="slide-container">
-            <div class="slide-image">
-              <div class="logo-container">
-                <img
-                id="company-logo"
-                src="{{ img_url }}"
-                alt="Company Logo"
-                />
-                <img id="map-slide" src="/static/images/Redistricting.jpg" />
-              </div>
-            </div>
-            <div class="carousel-controls">
-              <label for="img-3" class="prev-slide">
-                <span>&lsaquo;</span>
-              </label>
-              <label for="img-2" class="next-slide">
-                <span>&rsaquo;</span>
-              </label>
-            </div>
-          </li>
-          <input type="radio" name="radio-buttons" id="img-2" />
-          <li class="slide-container">
-            <div class="slide-image">
-              <div class="logo-container">
-              <img
-              id="company-logo"
-              src="{{ img_url }}"
-              alt="Company Logo"
+    <header></header>
+    <div class="'container m-auto grid grid-cols-2 gap-2">
+      <div
+        class="mx-auto tile max-w-2xl bg-pink-600 border border-gray-200 rounded-lg shadow mt-10"
+      >
+        <div
+          class="positon-relative bg-[url(/static/images/Redistricting.jpg)] h-2/5"
+        >
+          <img
+            class="positon-absolute block mx-auto h-20 w-20 rounded-lg inset-0.5"
+            src="{{ img_url }}"
+            alt="Company Logo"
+          />
+        </div>
+        <div class="p-5">
+          <p
+            id="message-text"
+            class="mb-3 text-sm text-white-500 dark:text-white"
+          >
+            {{ value }}
+          </p>
+          <a
+            href="#"
+            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Follow Me
+            <svg
+              class="w-3.5 h-3.5 ml-2"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="blue-400"
+              viewBox="0 0 14 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 5h12m0 0L9 1m4 4L9 9"
               />
-              <img id="slide" src="/static/images/cart.png" />
-              </div>
-            </div>
-            <div class="carousel-controls">
-              <label for="img-1" class="prev-slide">
-                <span>&lsaquo;</span>
-              </label>
-              <label for="img-3" class="next-slide">
-                <span>&rsaquo;</span>
-              </label>
-            </div>
-          </li>
-          <input type="radio" name="radio-buttons" id="img-3" />
-          <li class="slide-container">
-            <div class="slide-image">
-                <div class="grid-parent">
-                   {% for name, image in dic.items() %}       
-                    <div class="p{{loop.index + 1}}"><img id="productImage" src="{{image}}" /> <br><b>{{name}}</b></div>
-                   {% endfor %}
-                  </div>
-            </div>
-            <div class="carousel-controls">
-              <label for="img-2" class="prev-slide">
-                <span>&lsaquo;</span>
-              </label>
-              <label for="img-1" class="next-slide">
-                <span>&rsaquo;</span>
-              </label>
-            </div>
-          </li>
-          <div class="carousel-dots">
-            <label for="img-1" class="carousel-dot" id="img-dot-1"></label>
-            <label for="img-2" class="carousel-dot" id="img-dot-2"></label>
-          </div>
-        </ul>
+            </svg>
+          </a>
+        </div>
       </div>
-      <div class="message-container">
-        <div class="message-text"> {{ value }} </div>
+      <div
+        class="tile mx-auto max-w-2xl bg-pink-600 border border-gray-200 rounded-lg shadow mt-10"
+      >
+        <img
+          class="mt-2 mx-auto bg-white h-20 w-20 rounded-lg"
+          src="{{ img_url }}"
+          alt="Company Logo"
+        />
+        <a href="#">
+          <div class="px-2 mt-6 grid grid-cols-4 gap-2">
+            {% for name, image in dic.items() %}
+            <div class="p{{loop.index + 1}}">
+              <img
+                id="productImage"
+                class="mx-auto h-40 w-40"
+                src="{{ image }}"
+              />
+              <br /><b
+                class="mx-auto text-xs text-white-500 dark:text-white message-text"
+                >{{name}}</b
+              >
+            </div>
+            {% endfor %}
+          </div>
+        </a>
+        <div class="p-5">
+          <a href="#">
+            <h5
+              class="mb-2 text-2xl font-bold tracking-tight text-white-900 dark:text-white"
+            >
+              {{ value.split(' ')[1] }} {{ value.split(' ')[2] }} {{
+              value.split(' ')[3] }}
+            </h5>
+          </a>
+          <p class="mb-3 text-sm text-white-500 dark:text-white message-text">
+            Hey its Inky Bot again and I’m here to help with ideas for how to
+            personalize content at scale and on a 1-1 for each of your
+            customers? We’re here to help. Here you’ll find examples of how
+            Movable Ink Studio can leverage & activate your data in new and
+            compelling ways. You’ll see examples from some of our most popular
+            use-cases here:
+          </p>
+          <ul
+            class="ml-1 list-disc text-sm text-white-500 dark:text-white message-text"
+          >
+            <li>
+              Dynamic Store Locator: Map Helper complements local maps,
+              displaying information such as store addresses, phone numbers,
+              hours and even the map itself. When customers view your campaign,
+              information for the closest location(s) is listed based on the
+              customer’s zipcode or favorite store.
+            </li>
+            <li>
+              Dynamic Product Grid: Movable Ink can connect to your data sources
+              to showcase live product information. This can then be targeted
+              against behavioral data, CRM data, Contextual data or no data at
+              all!
+            </li>
+          </ul>
+          <p class="text-sm text-white-500 dark:text-white message-text">
+            Remember - you can format this in any style you would like! You have
+            full control of the look & feel of each dynamic block of content you
+            create with us. Our teams would work with yours to determine
+            feasibility on each use case based on what you want to see come to
+            life.
+          </p>
+          <a
+            href="#"
+            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-1"
+          >
+            Follow Me
+            <svg
+              class="w-3.5 h-3.5 ml-2"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="blue-400"
+              viewBox="0 0 14 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 5h12m0 0L9 1m4 4L9 9"
+              />
+            </svg>
+          </a>
+          <div class="grid grid-cols-2">
+            <p class="mt-8 text-sm font-medium text-center text-white">
+              Powered by Inky (Palm AI) &
+            </p>
+            <img
+              class="mt-5 rounded-full h-20 max-w-xs mr-11"
+              src="./static/images/logo.jpg"
+              alt=""
+            />
+          </div>
+        </div>
       </div>
     </div>
+
     <script src="/static/js/events.js"></script>
   </body>
 </html>
