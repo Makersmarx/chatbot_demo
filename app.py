@@ -42,7 +42,8 @@ def index():
     if request.method == "POST":
         inputUserOne = request.form.get("textEntry")
         inputUserTwo = request.form.get("textEntryTwo")
-        prompt = f"How can Movable Ink help {inputUserOne} with their email marketing spoken as a friendly solutions consultant name Inky"
+
+        prompt = f"Explain how Movable Ink can help {inputUserOne} with their email marketing spoken as a friendly solutions consultant name Inky. Return this information without any special characters and in one paragraph"
 
         response = palm.generate_text(**defaults, prompt=prompt)
         response_chat = response.result
@@ -141,6 +142,7 @@ def index():
             img_url=logo_image,
             value=re.sub(r"\s+", " ", response_chat),
             dic=final_dictionary,
+            client_url=inputUserTwo,
         )
 
     elif request.method == "GET":

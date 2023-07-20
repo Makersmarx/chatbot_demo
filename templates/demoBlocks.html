@@ -42,7 +42,7 @@
             </li>
           </ul>
           <a
-            href="{{ inputUserTwo }}"
+            href="{{ client_url }}"
             class="mt-12 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Follow Me
@@ -72,7 +72,7 @@
           src="{{ img_url }}"
           alt="Company Logo"
         />
-        <a href="{{ inputUserTwo }}">
+        <a href="{{ client_url }}">
           <div class="px-2 mt-6 grid grid-cols-4 gap-2">
             {% for name, image in dic.items() %}
             <div class="p{{loop.index + 1}}">
@@ -90,7 +90,7 @@
           </div>
         </a>
         <div class="p-5">
-          <a href="{{ inputUserTwo }}">
+          <a href="{{ client_url }}">
             <h5
               class="mb-2 text-2xl font-bold tracking-tight text-white-900 dark:text-white"
             >
@@ -124,7 +124,7 @@
             life.
           </p>
           <a
-            href="#"
+            href="{{ client_url }}"
             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-16"
           >
             Follow Me
